@@ -1,5 +1,6 @@
 package kigali.clinic.rw.controller;
 
+import java.time.LocalDate;
 import java.util.List;
 import java.util.UUID;
 
@@ -79,4 +80,11 @@ public ResponseEntity<Page<Appointment>> getDoctorAppointmentsPaginated(
    public ResponseEntity<List<Appointment>> getByStatus(@RequestParam AppointmentStatus status) {
        return ResponseEntity.ok(appointmentService.getAppointmentsByStatus(status));
    }
+
+   @GetMapping("/between")
+public ResponseEntity<List<Appointment>> getBetween(@RequestParam String start, @RequestParam String end) {
+    return ResponseEntity.ok(appointmentService.getAppointmentsBetween(
+            LocalDate.parse(start), LocalDate.parse(end)));
+}
+
 }

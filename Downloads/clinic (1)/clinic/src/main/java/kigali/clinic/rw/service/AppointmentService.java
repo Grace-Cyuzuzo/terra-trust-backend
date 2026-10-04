@@ -3,6 +3,7 @@ package kigali.clinic.rw.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.time.LocalDate;
 //import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.stream.Collectors;
@@ -93,4 +94,8 @@ public Page<Appointment> getDoctorAppointmentsPaginated(UUID doctorId, int page,
     public List<Appointment> getAppointmentsByStatus(AppointmentStatus status) {
         return appointmentRepo.findByStatusOrderByAppointmentDateAsc(status);
     }
+
+           public List<Appointment> getAppointmentsBetween(LocalDate start, LocalDate end) {
+           return appointmentRepo.findByAppointmentDateBetweenOrderByAppointmentDateAsc(start, end);
+       }
 }
