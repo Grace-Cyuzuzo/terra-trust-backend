@@ -29,6 +29,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
     Page<Appointment> findByDoctorId(UUID doctorId, Pageable pageable);
         List<Appointment> findByStatusOrderByAppointmentDateAsc(AppointmentStatus status);
         List<Appointment> findByAppointmentDateBetweenOrderByAppointmentDateAsc(LocalDate start, LocalDate end);
+        @Query("SELECT CASE WHEN COUNT(a) > 0 THEN true ELSE false END FROM Appointment a "
+            + "WHERE a.doctor.id = :doctorId AND a.appointmentDate = :date AND a.status <> :status")
+        boolean existsByDoctorIdAndAppointmentDateAndStatusNot( @Param("doctorId") UUID doctorId, @Param("date") LocalDate date, @Param("status") AppointmentStatus status);
 
 
 }

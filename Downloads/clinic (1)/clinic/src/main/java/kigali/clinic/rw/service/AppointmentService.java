@@ -4,7 +4,7 @@ import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
 import java.time.LocalDate;
-//import java.time.LocalDate;
+
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -28,6 +28,13 @@ public class AppointmentService {
     private AppointmentRepository appointmentRepo;
 
     public String saveAppointment(Appointment appointment) {
+        boolean alreadyBooked = appointmentRepo.existsByDoctorIdAndAppointmentDateAndStatusNot(
+                appointment.getDoctor().getId(),
+                appointment.getAppointmentDate(),
+                AppointmentStatus.CANCELLED);
+        if (alreadyBooked) {
+            return "Doctor is already booked on that date";
+        }
         appointmentRepo.save(appointment);
         return "saved successfully";
     }

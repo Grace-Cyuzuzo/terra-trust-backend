@@ -23,11 +23,14 @@ public class AppointmentController {
     @Autowired
     private AppointmentService appointmentService;
 
-    @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
+       @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> saveAppointment(@RequestBody Appointment appointment) {
-        return new ResponseEntity<>(appointmentService.saveAppointment(appointment), HttpStatus.CREATED);
+        String result = appointmentService.saveAppointment(appointment);
+        if (result.equals("Doctor is already booked on that date")) {
+            return new ResponseEntity<>(result, HttpStatus.CONFLICT);
+        }
+        return new ResponseEntity<>(result, HttpStatus.CREATED);
     }
-
     @GetMapping("/{id}")
     public ResponseEntity<Appointment> getAppointment(@PathVariable UUID id) {
         return ResponseEntity.ok(appointmentService.getAppointmentById(id));
