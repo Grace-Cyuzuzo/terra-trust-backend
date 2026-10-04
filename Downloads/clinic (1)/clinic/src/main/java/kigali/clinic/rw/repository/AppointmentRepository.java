@@ -23,8 +23,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
     @Query("SELECT a FROM Appointment a JOIN a.doctor d JOIN d.specializations s WHERE s.name = :specializationName")
     List<Appointment> findAppointmentsByDoctorSpecialization(@Param("specializationName") String specializationName);
-    
+
     Page<Appointment> findByDoctorId(UUID doctorId, Pageable pageable);
+        List<Appointment> findByStatusOrderByAppointmentDateAsc(AppointmentStatus status);
 
 }
 

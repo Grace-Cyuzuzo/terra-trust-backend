@@ -3,7 +3,7 @@ package kigali.clinic.rw.service;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-import java.time.LocalDate;
+//import java.time.LocalDate;
 import java.util.Comparator;
 import java.util.stream.Collectors;
 
@@ -89,4 +89,8 @@ public Page<Appointment> getDoctorAppointmentsPaginated(UUID doctorId, int page,
     Pageable pageable = PageRequest.of(page, size, Sort.by("appointmentDate").ascending());
     return appointmentRepo.findByDoctorId(doctorId, pageable);
 }
+
+    public List<Appointment> getAppointmentsByStatus(AppointmentStatus status) {
+        return appointmentRepo.findByStatusOrderByAppointmentDateAsc(status);
+    }
 }

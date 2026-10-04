@@ -9,6 +9,8 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
+import kigali.clinic.rw.domain.AppointmentStatus;
+//import java.time.LocalDate;
 
 import kigali.clinic.rw.domain.Appointment;
 import kigali.clinic.rw.service.AppointmentService;
@@ -72,4 +74,9 @@ public ResponseEntity<Page<Appointment>> getDoctorAppointmentsPaginated(
         @RequestParam(defaultValue = "10") int size) {
     return ResponseEntity.ok(appointmentService.getDoctorAppointmentsPaginated(doctorId, page, size));
 }
+
+   @GetMapping("/by-status")
+   public ResponseEntity<List<Appointment>> getByStatus(@RequestParam AppointmentStatus status) {
+       return ResponseEntity.ok(appointmentService.getAppointmentsByStatus(status));
+   }
 }
