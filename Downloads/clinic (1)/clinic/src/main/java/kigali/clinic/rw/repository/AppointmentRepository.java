@@ -33,6 +33,9 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
             + "WHERE a.doctor.id = :doctorId AND a.appointmentDate = :date AND a.status <> :status")
         boolean existsByDoctorIdAndAppointmentDateAndStatusNot( @Param("doctorId") UUID doctorId, @Param("date") LocalDate date, @Param("status") AppointmentStatus status);
 
+            @Query("SELECT a.status, COUNT(a) FROM Appointment a GROUP BY a.status")
+    List<Object[]> countAppointmentsByStatus();
+
 
 }
 

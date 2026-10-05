@@ -90,4 +90,9 @@ public ResponseEntity<List<Appointment>> getBetween(@RequestParam String start, 
             LocalDate.parse(start), LocalDate.parse(end)));
 }
 
+@GetMapping("/stats/by-status")
+public ResponseEntity<List<Object[]>> getStatsByStatus() {
+    return ResponseEntity.ok(appointmentService.getAppointmentCountByStatus());
+}
+
 }

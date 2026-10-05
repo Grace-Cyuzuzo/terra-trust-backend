@@ -105,4 +105,8 @@ public Page<Appointment> getDoctorAppointmentsPaginated(UUID doctorId, int page,
            public List<Appointment> getAppointmentsBetween(LocalDate start, LocalDate end) {
            return appointmentRepo.findByAppointmentDateBetweenOrderByAppointmentDateAsc(start, end);
        }
+
+           public List<Object[]> getAppointmentCountByStatus() {
+        return appointmentRepo.countAppointmentsByStatus();
+    }
 }
