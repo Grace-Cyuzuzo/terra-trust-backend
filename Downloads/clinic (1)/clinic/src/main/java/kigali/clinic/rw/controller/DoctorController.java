@@ -47,4 +47,8 @@ public ResponseEntity<String> saveDoctor(@RequestBody Doctor doctor, @RequestPar
     public ResponseEntity<List<Doctor>> getBySpecialization(@RequestParam String name) {
         return ResponseEntity.ok(doctorService.getDoctorsBySpecialization(name));
     }
+        @GetMapping("/without-office")
+    public ResponseEntity<List<Doctor>> getWithoutOffice() {
+        return ResponseEntity.ok(doctorService.getDoctorsWithoutOffice());
+    }
 }

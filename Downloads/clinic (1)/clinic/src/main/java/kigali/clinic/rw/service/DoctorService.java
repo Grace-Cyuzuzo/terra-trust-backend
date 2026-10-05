@@ -71,4 +71,7 @@ public class DoctorService {
         public List<Doctor> getDoctorsBySpecialization(String name) {
         return doctorRepo.findDoctorsBySpecializationName(name);
     }
+        public List<Doctor> getDoctorsWithoutOffice() {
+        return doctorRepo.findDoctorsWithoutOffice();
+    }
 }
