@@ -71,4 +71,8 @@ public class PatientService {
            }
            return Optional.of(patientRepo.findPatientsByDoctorId(doctorId));
        }
+
+           public List<Patient> getFrequentPatients(long min) {
+        return patientRepo.findFrequentPatients(min);
+    }
 }
