@@ -43,4 +43,8 @@ public ResponseEntity<String> saveDoctor(@RequestBody Doctor doctor, @RequestPar
     public ResponseEntity<String> deleteDoctor(@PathVariable UUID id) {
         return ResponseEntity.ok(doctorService.deleteDoctor(id));
     }
+        @GetMapping("/by-specialization")
+    public ResponseEntity<List<Doctor>> getBySpecialization(@RequestParam String name) {
+        return ResponseEntity.ok(doctorService.getDoctorsBySpecialization(name));
+    }
 }

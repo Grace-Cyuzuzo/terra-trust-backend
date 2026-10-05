@@ -68,4 +68,7 @@ public class DoctorService {
         }
         return "we don't have doctor with that id " + id;
     }
+        public List<Doctor> getDoctorsBySpecialization(String name) {
+        return doctorRepo.findDoctorsBySpecializationName(name);
+    }
 }
