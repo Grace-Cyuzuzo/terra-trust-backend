@@ -2,6 +2,7 @@ package kigali.clinic.rw.repository;
 
 import java.util.UUID;
 import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.stereotype.Repository;
 import kigali.clinic.rw.domain.Appointment;
 
@@ -35,6 +36,14 @@ public interface AppointmentRepository extends JpaRepository<Appointment, UUID> 
 
             @Query("SELECT a.status, COUNT(a) FROM Appointment a GROUP BY a.status")
     List<Object[]> countAppointmentsByStatus();
+
+           @Modifying
+       @Query("UPDATE Appointment a SET a.status = :cancelled "
+            + "WHERE a.doctor.id = :doctorId AND a.appointmentDate = :date AND a.status <> :completed")
+       int cancelDayForDoctor(@Param("doctorId") UUID doctorId,
+                              @Param("date") LocalDate date,
+                              @Param("cancelled") AppointmentStatus cancelled,
+                              @Param("completed") AppointmentStatus completed);
 
 
 }

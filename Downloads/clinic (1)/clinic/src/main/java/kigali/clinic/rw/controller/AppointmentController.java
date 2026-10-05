@@ -95,4 +95,9 @@ public ResponseEntity<List<Object[]>> getStatsByStatus() {
     return ResponseEntity.ok(appointmentService.getAppointmentCountByStatus());
 }
 
+@PatchMapping("/cancel-day")
+public ResponseEntity<String> cancelDay(@RequestParam UUID doctorId, @RequestParam String date) {
+    return ResponseEntity.ok(appointmentService.cancelDay(doctorId, LocalDate.parse(date)));
+}
+
 }
