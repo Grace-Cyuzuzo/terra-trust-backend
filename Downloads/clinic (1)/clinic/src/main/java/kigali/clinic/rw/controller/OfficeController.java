@@ -55,5 +55,14 @@ public ResponseEntity<String> updateOffice(@PathVariable int officeNumber, @Requ
 public ResponseEntity<String> deleteOffice(@PathVariable int officeNumber) {
     return ResponseEntity.ok(officeService.deleteOneOffice(officeNumber));
 }
+
+@GetMapping("/busiest")
+public ResponseEntity<?> getBusiestOffice() {
+    List<Object[]> result = officeService.getBusiestOffice();
+    if (result.isEmpty()) {
+        return ResponseEntity.ok("No appointments yet");
+    }
+    return ResponseEntity.ok(result);
+}
 }
 

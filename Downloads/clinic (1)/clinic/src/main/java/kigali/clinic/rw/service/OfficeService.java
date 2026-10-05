@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
@@ -27,6 +28,10 @@ public class OfficeService {
 
       officeRepo.save(office);
       return "saved successfully";
+   }
+
+   public List<Object[]> getBusiestOffice() {
+       return officeRepo.findBusiestOffice(PageRequest.of(0, 1));
    }
 
    

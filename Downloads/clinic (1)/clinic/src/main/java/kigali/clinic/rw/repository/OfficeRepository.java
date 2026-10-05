@@ -8,6 +8,8 @@ import org.springframework.data.jpa.repository.JpaRepository;
 //import org.springframework.data.jpa.repository.Query;
 //import org.springframework.data.repository.query.Param;
 import org.springframework.stereotype.Repository;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.jpa.repository.Query;
 
 import kigali.clinic.rw.domain.Doctor;
 import kigali.clinic.rw.domain.Office;
@@ -27,6 +29,10 @@ public interface OfficeRepository  extends JpaRepository<Office,UUID>{
     //         SELECT FROM Office O WHERE O.doctor.name : = name
     //         """)
     // List<Office> findByDoctorName(@Param("name") String name);
+
+           @Query("SELECT o.name, o.officeNumber, COUNT(a) FROM Appointment a JOIN a.doctor d JOIN d.office o "
+            + "GROUP BY o.id, o.name, o.officeNumber ORDER BY COUNT(a) DESC, o.officeNumber ASC")
+       List<Object[]> findBusiestOffice(Pageable pageable);
 
 
 }
