@@ -117,4 +117,14 @@ public Page<Appointment> getDoctorAppointmentsPaginated(UUID doctorId, int page,
                    doctorId, date, AppointmentStatus.CANCELLED, AppointmentStatus.COMPLETED);
            return count + " appointments cancelled";
        }
+
+           public Page<Appointment> getAppointmentsPage(Pageable pageable) {
+        return appointmentRepo.findAll(pageable);
+    }
+
+        @Transactional
+    public String deleteCancelledBefore(LocalDate date) {
+        int count = appointmentRepo.deleteCancelledBefore(AppointmentStatus.CANCELLED, date);
+        return count + " appointments deleted";
+    }
 }

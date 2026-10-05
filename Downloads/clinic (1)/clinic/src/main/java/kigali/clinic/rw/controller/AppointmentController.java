@@ -11,6 +11,9 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.data.domain.Page;
 import kigali.clinic.rw.domain.AppointmentStatus;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
+import org.springframework.data.domain.Sort;
 //import java.time.LocalDate;
 
 import kigali.clinic.rw.domain.Appointment;
@@ -98,6 +101,22 @@ public ResponseEntity<List<Object[]>> getStatsByStatus() {
 @PatchMapping("/cancel-day")
 public ResponseEntity<String> cancelDay(@RequestParam UUID doctorId, @RequestParam String date) {
     return ResponseEntity.ok(appointmentService.cancelDay(doctorId, LocalDate.parse(date)));
+}
+   @GetMapping("/page")
+   public ResponseEntity<Page<Appointment>> getAppointmentsPage(
+           @RequestParam(defaultValue = "0") int page,
+           @RequestParam(defaultValue = "5") int size,
+           @RequestParam(defaultValue = "appointmentDate,asc") String sort) {
+       String[] parts = sort.split(",");
+       Sort.Direction direction = (parts.length > 1 && parts[1].equalsIgnoreCase("desc"))
+               ? Sort.Direction.DESC : Sort.Direction.ASC;
+       Pageable pageable = PageRequest.of(page, size, Sort.by(direction, parts[0]));
+       return ResponseEntity.ok(appointmentService.getAppointmentsPage(pageable));
+   }
+
+   @DeleteMapping("/cancelled-before")
+public ResponseEntity<String> deleteCancelledBefore(@RequestParam String date) {
+    return ResponseEntity.ok(appointmentService.deleteCancelledBefore(LocalDate.parse(date)));
 }
 
 }
