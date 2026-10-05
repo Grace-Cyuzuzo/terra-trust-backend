@@ -60,4 +60,8 @@ public class SpecializationController {
     public ResponseEntity<String> removeDoctor(@PathVariable UUID specializationId, @PathVariable UUID doctorId) {
         return ResponseEntity.ok(specializationService.removeDoctor(specializationId, doctorId));
     }
+    @GetMapping("/unused")
+public ResponseEntity<List<Specialization>> getUnusedSpecializations() {
+    return ResponseEntity.ok(specializationService.getUnusedSpecializations());
+}
 }

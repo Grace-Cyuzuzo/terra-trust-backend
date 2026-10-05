@@ -1,0 +1,567 @@
+{
+  "info": {
+    "name": "WebTech",
+    "description": null,
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "save",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/doctors",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "doctors"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{ \"appointmentDate\": \"2026-11-15\", \"reason\": \"Vaccination\", \"status\": \"COMPLETED\",\n  \"patient\": { \"id\": \"a515ea55-b08f-4f16-8ca9-312ee6e57762\" },\n  \"doctor\": { \"id\": \"4a1c2057-5194-48bb-ad66-7e964fa231e2\" } }\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "CapaCare",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8081/doctors/create",
+          "protocol": "http",
+          "host": [
+            "localhost:8081"
+          ],
+          "path": [
+            "doctors",
+            "create"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\"firstName\":\"Jane\",\n \"lastName\":\"Doe\",\n \"gender\":\"Female\",\n \"age\":40,\n \"specialization\":\"Cardiology\",\n \"department\":\"Cardiology\",\n \"dailyCapacity\":8\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "A1",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/patients/by-last-name?lastName=uwase",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "patients",
+            "by-last-name"
+          ],
+          "query": [
+            {
+              "key": "lastName",
+              "value": "uwase"
+            }
+          ],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "A2",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/by-status?status=SCHEDULED",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "by-status"
+          ],
+          "query": [
+            {
+              "key": "status",
+              "value": "SCHEDULED"
+            }
+          ],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "A3",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/between?start=2026-10-01&end=2026-10-31",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "between"
+          ],
+          "query": [
+            {
+              "key": "start",
+              "value": "2026-10-01"
+            },
+            {
+              "key": "end",
+              "value": "2026-10-31"
+            }
+          ],
+          "variable": []
+        }
+      }
+    },
+    {
+      "name": "A4",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/save",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "save"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "B1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/doctors/by-specialization?name=cardiology",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "doctors",
+            "by-specialization"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "cardiology"
+            }
+          ],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "B2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/doctors/by-specialization?name=cardiology",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "doctors",
+            "by-specialization"
+          ],
+          "query": [
+            {
+              "key": "name",
+              "value": "cardiology"
+            }
+          ],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "B3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/specializations/unused",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "specializations",
+            "unused"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "B4",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/patients/of-doctor/f0306217-cbca-468a-bc65-f7bdb543c7a1",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "patients",
+            "of-doctor",
+            "f0306217-cbca-468a-bc65-f7bdb543c7a1"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "B5",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/stats/by-status",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "stats",
+            "by-status"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "C2",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/patients/frequent?min=3",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "patients",
+            "frequent"
+          ],
+          "query": [
+            {
+              "key": "min",
+              "value": "3"
+            }
+          ],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "C3",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/offices/busiest",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "offices",
+            "busiest"
+          ],
+          "query": [],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "C4",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/cancel-day?doctorId=f0306217-cbca-468a-bc65-f7bdb543c7a1&date=2026-10-20",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "cancel-day"
+          ],
+          "query": [
+            {
+              "key": "doctorId",
+              "value": "f0306217-cbca-468a-bc65-f7bdb543c7a1"
+            },
+            {
+              "key": "date",
+              "value": "2026-10-20"
+            }
+          ],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Bonus 1",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "method": "GET",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/page?page=0&size=5&sort=appointmentDate,desc",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "page"
+          ],
+          "query": [
+            {
+              "key": "page",
+              "value": "0"
+            },
+            {
+              "key": "size",
+              "value": "5"
+            },
+            {
+              "key": "sort",
+              "value": "appointmentDate,desc"
+            }
+          ],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    },
+    {
+      "name": "Bonus 2",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "description": "",
+        "url": {
+          "raw": "http://localhost:8080/api/appointments/cancelled-before?date=2026-10-15",
+          "protocol": "http",
+          "host": [
+            "localhost:8080"
+          ],
+          "path": [
+            "api",
+            "appointments",
+            "cancelled-before"
+          ],
+          "query": [
+            {
+              "key": "date",
+              "value": "2026-10-15"
+            }
+          ],
+          "variable": []
+        },
+        "body": {
+          "mode": "raw",
+          "raw": "{\n  \"appointmentDate\": \"2026-10-05\",\n  \"reason\": \"Checkup\",\n  \"status\": \"SCHEDULED\",\n  \"doctor\": { \"id\": \"f0306217-cbca-468a-bc65-f7bdb543c7a1\" },\n  \"patient\": { \"id\": \"c515e7e8-b1b5-462f-87ec-33bcd730c7a9\" }\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        }
+      }
+    }
+  ],
+  "variable": []
+}

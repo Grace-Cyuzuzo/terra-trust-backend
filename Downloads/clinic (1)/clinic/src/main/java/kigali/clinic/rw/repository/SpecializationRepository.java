@@ -14,4 +14,5 @@ import kigali.clinic.rw.domain.Specialization;
 public interface SpecializationRepository extends JpaRepository<Specialization, UUID> {
            @Query("SELECT s FROM Specialization s WHERE s.doctors IS EMPTY")
        List<Specialization> findUnusedSpecializations();
+       
 }
