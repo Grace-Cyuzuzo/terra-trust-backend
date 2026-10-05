@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
+   import kigali.clinic.rw.repository.DoctorRepository;
 
 import kigali.clinic.rw.domain.Patient;
 import kigali.clinic.rw.repository.PatientRepository;
@@ -17,6 +18,9 @@ public class PatientService {
 
     @Autowired
     private PatientRepository patientRepo;
+
+    @Autowired
+       private DoctorRepository doctorRepo;
 
     public String savePatient(Patient patient) {
         patientRepo.save(patient);
@@ -59,4 +63,12 @@ public class PatientService {
         public List<Patient> getPatientsByLastName(String lastName) {
         return patientRepo.findByLastNameIgnoreCaseOrderByFirstNameAsc(lastName);
     }
+           
+
+              public Optional<List<Patient>> getPatientsOfDoctor(UUID doctorId) {
+           if (!doctorRepo.existsById(doctorId)) {
+               return Optional.empty();
+           }
+           return Optional.of(patientRepo.findPatientsByDoctorId(doctorId));
+       }
 }
