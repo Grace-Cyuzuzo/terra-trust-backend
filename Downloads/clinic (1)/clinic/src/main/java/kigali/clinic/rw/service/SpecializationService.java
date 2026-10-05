@@ -84,4 +84,8 @@ public String removeDoctor(UUID specializationId, UUID doctorId) {
     specializationRepo.save(specialization);
     return "Doctor removed from specialization successfully";
 }
+
+    public List<Specialization> getUnusedSpecializations() {
+        return specializationRepo.findUnusedSpecializations();
+    }
 }

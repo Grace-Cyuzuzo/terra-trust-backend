@@ -14,11 +14,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
 
 import kigali.clinic.rw.domain.Patient;
+import kigali.clinic.rw.domain.Specialization;
 import kigali.clinic.rw.service.PatientService;
+import kigali.clinic.rw.service.SpecializationService;
 
 @RestController
 @RequestMapping("/api/patients")
@@ -26,6 +28,9 @@ public class PatientController {
 
     @Autowired
     private PatientService patientService;
+
+    @Autowired
+    private SpecializationService specializationService;
 
     @PostMapping(value = "/save", consumes = MediaType.APPLICATION_JSON_VALUE, produces = MediaType.APPLICATION_JSON_VALUE)
     public ResponseEntity<String> savePatient(@RequestBody Patient patient) {
@@ -56,4 +61,8 @@ public class PatientController {
        public ResponseEntity<List<Patient>> getByLastName(@RequestParam String lastName) {
            return ResponseEntity.ok(patientService.getPatientsByLastName(lastName));
        }
+           @GetMapping("/unused")
+    public ResponseEntity<List<Specialization>> getUnused() {
+        return ResponseEntity.ok(specializationService.getUnusedSpecializations());
+    }
     }
