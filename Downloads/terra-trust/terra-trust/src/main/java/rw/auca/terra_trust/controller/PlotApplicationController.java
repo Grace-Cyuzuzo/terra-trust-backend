@@ -5,6 +5,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rw.auca.terra_trust.domain.PlotApplication;
 import rw.auca.terra_trust.service.PlotApplicationService;
+import rw.auca.terra_trust.service.PlotApplicationStatus;
+import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -50,4 +52,16 @@ public class PlotApplicationController {
         }
         return new ResponseEntity<>("The plot application with that id does not exist", HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping ("/by-status")
+    public List<PlotApplication> byStatus(@RequestParam PlotApplicationStatus status) {
+        return service.findByStatus(status);
+    }
+    @GetMapping("/between")
+    public List<PlotApplication> between(@RequestParam String start, @RequestParam String end) {
+        LocalDate startDate = LocalDate.parse(start);
+        LocalDate endDate = LocalDate.parse(end);
+        return service.findBetween(startDate, endDate);
+    }
+
 }

@@ -6,6 +6,8 @@ import rw.auca.terra_trust.repository.PlotApplicationRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+import java.time.LocalDate;
+import rw.auca.terra_trust.domain.PlotApplicationStatus;
 
 @Service
 public class PlotApplicationService {
@@ -29,5 +31,13 @@ public class PlotApplicationService {
     }
     public void delete(UUID id) { 
         repository.deleteById(id); 
+    }
+
+    public List<PlotApplication> findByStatus (PlotApplicationStatus status) {
+        return repository.findByStatusOrderByApplicationDateAsc(status);
+    }
+
+    public List<PlotApplication> findBetween(LocalDate start, LocalDate  end) {
+        return repository.findByApplicationDateBetweenOrderByApplicationDateAsc(start, end);
     }
 }

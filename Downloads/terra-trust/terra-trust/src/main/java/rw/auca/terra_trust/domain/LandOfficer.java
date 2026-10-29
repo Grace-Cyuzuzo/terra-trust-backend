@@ -19,7 +19,7 @@ public class LandOfficer {
     @Id 
     @GeneratedValue(strategy = GenerationType.UUID)
     private UUID id;
-    private int firstName;
+    private String firstName;
     private String lastname;
     private String email;
 
@@ -40,11 +40,11 @@ public class LandOfficer {
         this.id = id;
     }
 
-    public int getFirstName(){
+    public String getFirstName(){
         return firstName;
     }
 
-    public void setFirstName(int firstName){
+    public void setFirstName(String firstName){
         this.firstName = firstName;
     }
     public String getLastname(){

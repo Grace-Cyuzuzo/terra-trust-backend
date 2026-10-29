@@ -30,4 +30,8 @@ public class BuyerService {
     public void delete(UUID id) { 
         repository.deleteById(id); 
     }
+    public List<Buyer> findByLastname(String lastname) {
+        return repository.findByLastnameIgnoreCaseOrderByFirstnameAsc(lastname); 
+        
+    }
 }

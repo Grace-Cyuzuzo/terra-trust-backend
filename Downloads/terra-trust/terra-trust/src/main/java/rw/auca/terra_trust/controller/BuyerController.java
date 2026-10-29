@@ -53,4 +53,9 @@ public class BuyerController {
         }
         return new ResponseEntity<>("The buyer with that id does not exist", HttpStatus.NOT_FOUND);
     }
+
+    @GetMapping("/by-last-name")
+    public List<Buyer> byLastName(@RequestParam String lastName) {
+        return service.findByLastname(lastName);
+    }
 }
