@@ -52,4 +52,9 @@ public class LandOfficerController {
         }
         return new ResponseEntity<>("The land officer with that id does not exist", HttpStatus.NOT_FOUND);
     }
+    @GetMapping ("/by-sector")
+    public List<LandOfficer> bySector(@RequestParam String name) {
+        return service.findBySectorName(name);
+    }
+    
 }

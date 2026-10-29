@@ -36,6 +36,8 @@ public class LandOfficeService {
     public void delete(UUID id) {
         repository.deleteById(id);
     }
-
+    public List<LandOffice> findFreeOffices() {
+        return repository.findFreeOffices();
+    }
 
 }

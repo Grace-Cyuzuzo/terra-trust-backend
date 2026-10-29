@@ -55,5 +55,9 @@ public class LandOfficeController {
         }
         return new ResponseEntity<>("The land office with that id does not exist", HttpStatus.NOT_FOUND);
     }
+    @GetMapping("/free")
+    public List<LandOffice> getFreeOffices() {
+        return service.findFreeOfficers();
+    }
 }
 

@@ -32,4 +32,7 @@ public class LandOfficerService {
     public void delete(UUID id) { 
         repository.deleteById(id); 
     }
+    public List<LandOfficer> findBySectorName(String name){
+        return repository.findBySectorName(name); 
+    }
 }

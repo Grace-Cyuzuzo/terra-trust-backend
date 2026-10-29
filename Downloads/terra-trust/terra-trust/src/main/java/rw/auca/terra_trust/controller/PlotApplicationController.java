@@ -5,7 +5,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import rw.auca.terra_trust.domain.PlotApplication;
 import rw.auca.terra_trust.service.PlotApplicationService;
-import rw.auca.terra_trust.service.PlotApplicationStatus;
+import rw.auca.terra_trust.domain.PlotApplicationStatus;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;

@@ -59,4 +59,8 @@ public class SectorController {
         }
         return new ResponseEntity<>("The sector with that id does not exist", HttpStatus.NOT_FOUND);
     }
+    @GetMapping("/unused")
+    public List<Sector> getUnsusedSectors() {
+        return service.findUnusedSectors();
+    }
 }
