@@ -57,7 +57,7 @@ public class LandOfficeController {
     }
     @GetMapping("/free")
     public List<LandOffice> getFreeOffices() {
-        return service.findFreeOfficers();
+        return service.findFreeOffices();
     }
 }
 

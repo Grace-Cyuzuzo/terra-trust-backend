@@ -11,6 +11,6 @@ import rw.auca.terra_trust.domain.Buyer;
 
 public interface BuyerRepository extends JpaRepository<Buyer, UUID> {
     List<Buyer> findByLastnameIgnoreCaseOrderByFirstnameAsc(String lastname);
-    @Query("SELECT DISTINCT b FROM Buyer b JOIN PlotApplication p.buyer = b WHERE p.landOfficer.id = :landOfficerId ")
+    @Query("SELECT DISTINCT b FROM Buyer b JOIN PlotApplication p ON p.buyer = b WHERE p.landOfficer.id = :landOfficerId ")
     List<Buyer> findBuyersByLandOfficerId(@Param ("landOfficerId") UUID landOfficerId);
 }

@@ -6,6 +6,7 @@ import org.springframework.web.bind.annotation.*;
 import rw.auca.terra_trust.domain.Buyer;
 import rw.auca.terra_trust.service.BuyerService;
 import rw.auca.terra_trust.service.LandOfficerService;
+import rw.auca.terra_trust.domain.LandOfficer;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
@@ -14,9 +15,11 @@ import java.util.UUID;
 @RequestMapping("/api/buyers")
 public class BuyerController {
     private final BuyerService service;
+    private final LandOfficerService landOfficerService;
 
-    public BuyerController(BuyerService service) {
+    public BuyerController(BuyerService service, LandOfficerService landOfficerService) {
         this.service = service;
+        this.landOfficerService = landOfficerService;
     }
 
     @PostMapping("/save")
@@ -63,9 +66,9 @@ public class BuyerController {
     public ResponseEntity<?> getBuyersOfOfficer(@PathVariable  UUID landOfficerId){
         Optional<LandOfficer> officer =  landOfficerService.findById(landOfficerId);
         if (officer.isEmpty()) {
-            return new ResponseEntity<>("The land Officer with that is does not exist", HttpStatus.NOT_FOUND);
+            return new ResponseEntity<>("The land Officer with that id does not exist", HttpStatus.NOT_FOUND);
         }
-        return  new ResponseEntity<>(service.findBuyersByLandOfficerId(landOfficeId), HttpStatus.OK);
+        return  new ResponseEntity<>(service.findBuyersByLandOfficerId(landOfficerId), HttpStatus.OK);
         
     }
 }

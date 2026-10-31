@@ -7,6 +7,7 @@ import java.util.UUID;
 import org.springframework.stereotype.Service;
 
 import rw.auca.terra_trust.domain.LandOfficer;
+import rw.auca.terra_trust.domain.LandOffice;
 import rw.auca.terra_trust.repository.LandOfficerRepository;
 
 @Service
@@ -35,4 +36,8 @@ public class LandOfficerService {
     public List<LandOfficer> findBySectorName(String name){
         return repository.findBySectorName(name); 
     }
+    public boolean existsByLandOffice(LandOffice landOffice){
+        return repository.existsByLandOffice(landOffice);
+    }
+    
 }

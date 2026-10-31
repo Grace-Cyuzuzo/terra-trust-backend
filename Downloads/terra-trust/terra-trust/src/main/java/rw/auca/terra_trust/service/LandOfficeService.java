@@ -1,11 +1,13 @@
 package rw.auca.terra_trust.service;
 
+import java.util.List;
+import java.util.Optional;
+import java.util.UUID;
+
 import org.springframework.stereotype.Service;
+
 import rw.auca.terra_trust.domain.LandOffice;
 import rw.auca.terra_trust.repository.LandOfficeRepository;
-import java.util.List;
-import java.util.UUID;
-import java.util.Optional;
 
 @Service
 public class LandOfficeService {
@@ -39,5 +41,9 @@ public class LandOfficeService {
     public List<LandOffice> findFreeOffices() {
         return repository.findFreeOffices();
     }
+    public Optional<LandOffice> findByOfficeNumber(int officeNumber) {
+        return repository.findByOfficeNumber(officeNumber);
+    }
+    
 
 }

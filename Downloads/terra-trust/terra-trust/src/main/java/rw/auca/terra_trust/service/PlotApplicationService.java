@@ -40,4 +40,19 @@ public class PlotApplicationService {
     public List<PlotApplication> findBetween(LocalDate start, LocalDate  end) {
         return repository.findByApplicationDateBetweenOrderByApplicationDateAsc(start, end);
     }
+    public String saveSafe(PlotApplication app) {
+        //Rule 1: Date cannot be in the past
+        if (app.getApplicationDate().isBefore(LocalDate.now())) {
+            return "PAST_DATE_ERROR";
+        }
+        //Rule 2: Officer already has an app on this date that is not rejected
+        if(app.getLandOfficer() != null && repository.existsByLandOfficerAndApplicationDateAndStatusNot(app.getLandOfficer(), app.getApplicationDate(), PlotApplicationStatus.REJECTED)){
+            return "OFFICER_BUSY_ERROR";
+        }
+
+        //Rule 3: Always force status to SUBMITTED
+        app.setStatus(PlotApplicationStatus.SUBMITTED.SUBMITTED);
+        repository.save(app);
+        return "SUCCESS";
+    }
 }

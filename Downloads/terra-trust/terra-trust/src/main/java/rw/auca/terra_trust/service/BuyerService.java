@@ -1,11 +1,13 @@
 package rw.auca.terra_trust.service;
 
-import org.springframework.stereotype.Service;
-import rw.auca.terra_trust.domain.Buyer;
-import rw.auca.terra_trust.repository.BuyerRepository;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
+
+import org.springframework.stereotype.Service;
+
+import rw.auca.terra_trust.domain.Buyer;
+import rw.auca.terra_trust.repository.BuyerRepository;
 
 @Service
 public class BuyerService {
@@ -33,5 +35,8 @@ public class BuyerService {
     public List<Buyer> findByLastname(String lastname) {
         return repository.findByLastnameIgnoreCaseOrderByFirstnameAsc(lastname); 
         
+    }
+    public List<Buyer> findBuyersByLandOfficerId(UUID landOfficerId) {
+        return repository.findBuyersByLandOfficerId(landOfficerId);
     }
 }
