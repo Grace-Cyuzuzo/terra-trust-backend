@@ -1,0 +1,227 @@
+{
+  "info": {
+    "name": "TerraTrust Midterm",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Part A",
+      "item": [
+        {
+          "name": "A2 - Save Buyer",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"firstname\": \"Alice\",\n  \"lastname\": \"Mukamana\",\n  \"nationalId\": \"1199880012345678\",\n  \"email\": \"alice@test.com\",\n  \"phone\": \"0788111222\"\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/buyers/save",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "buyers", "save"]
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": { "method": "POST", "url": { "raw": "http://localhost:8080/api/buyers/save" } },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [{ "key": "Content-Type", "value": "text/plain;charset=UTF-8" }],
+              "body": "Buyer saved successfully"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Part B",
+      "item": [
+        {
+          "name": "B1 - Buyers By Last Name",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/buyers/by-last-name?lastName=mukamana",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "buyers", "by-last-name"],
+              "query": [{ "key": "lastName", "value": "mukamana" }]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": { "method": "GET", "url": { "raw": "http://localhost:8080/api/buyers/by-last-name?lastName=mukamana" } },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174000\",\n    \"firstname\": \"Alice\",\n    \"lastname\": \"Mukamana\",\n    \"nationalId\": \"1199880012345678\"\n  },\n  {\n    \"id\": \"123e4567-e89b-12d3-a456-426614174001\",\n    \"firstname\": \"Bob\",\n    \"lastname\": \"Mukamana\",\n    \"nationalId\": \"1199880012345679\"\n  }\n]"
+            }
+          ]
+        },
+        {
+          "name": "B2 - Applications By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/plot-applications/by-status?status=SUBMITTED",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "plot-applications", "by-status"],
+              "query": [{ "key": "status", "value": "SUBMITTED" }]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": { "method": "GET", "url": { "raw": "http://localhost:8080/api/plot-applications/by-status?status=SUBMITTED" } },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  {\n    \"id\": \"app-1\",\n    \"applicationDate\": \"2026-10-25\",\n    \"status\": \"SUBMITTED\",\n    \"plotNumber\": \"PLOT-003\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Part C",
+      "item": [
+        {
+          "name": "C2 - Free Land Offices",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/land-offices/free",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "land-offices", "free"]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": { "method": "GET", "url": { "raw": "http://localhost:8080/api/land-offices/free" } },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  {\n    \"id\": \"office-4\",\n    \"officeNumber\": 4,\n    \"name\": \"Office Four\"\n  }\n]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Part D",
+      "item": [
+        {
+          "name": "D2 - Update Application Status",
+          "request": {
+            "method": "PATCH",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/plot-applications/{{applicationId}}/status?status=UNDER_REVIEW",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "plot-applications", "{{applicationId}}", "status"],
+              "query": [{ "key": "status", "value": "UNDER_REVIEW" }]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": { "method": "PATCH", "url": { "raw": "http://localhost:8080/api/plot-applications/123/status?status=UNDER_REVIEW" } },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "text",
+              "header": [{ "key": "Content-Type", "value": "text/plain;charset=UTF-8" }],
+              "body": "Plot application status updated successfully"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Part E",
+      "item": [
+        {
+          "name": "E1 - Save Plot Payment",
+          "request": {
+            "method": "POST",
+            "header": [{ "key": "Content-Type", "value": "application/json" }],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"paymentMethod\": \"Mobile Money\",\n  \"reference\": \"MTN-884512\",\n  \"amount\": 2500000\n}",
+              "options": { "raw": { "language": "json" } }
+            },
+            "url": {
+              "raw": "http://localhost:8080/api/plot-payments/save?plotApplicationId={{applicationId}}",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "plot-payments", "save"],
+              "query": [{ "key": "plotApplicationId", "value": "{{applicationId}}" }]
+            }
+          },
+          "response": [
+            {
+              "name": "201 Created",
+              "originalRequest": { "method": "POST", "url": { "raw": "http://localhost:8080/api/plot-payments/save?plotApplicationId=123" } },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": "text",
+              "header": [{ "key": "Content-Type", "value": "text/plain;charset=UTF-8" }],
+              "body": "Plot payment saved successfully"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Part F",
+      "item": [
+        {
+          "name": "F1 - Stats By Status",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "http://localhost:8080/api/plot-applications/stats/by-status",
+              "protocol": "http",
+              "host": ["localhost"],
+              "port": "8080",
+              "path": ["api", "plot-applications", "stats", "by-status"]
+            }
+          },
+          "response": [
+            {
+              "name": "200 OK",
+              "originalRequest": { "method": "GET", "url": { "raw": "http://localhost:8080/api/plot-applications/stats/by-status" } },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": "json",
+              "header": [{ "key": "Content-Type", "value": "application/json" }],
+              "body": "[\n  [\"SUBMITTED\", 4],\n  [\"APPROVED\", 2],\n  [\"REJECTED\", 2],\n  [\"UNDER_REVIEW\", 2]\n]"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
