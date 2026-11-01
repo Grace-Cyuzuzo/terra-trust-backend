@@ -60,7 +60,7 @@ public class BuyerController {
 
     @GetMapping("/by-last-name")
     public List<Buyer> byLastName(@RequestParam String lastName) {
-        return service.findByLastname(lastName);
+        return service.findByLastName(lastName);
     }
     @GetMapping ("/of-land-officer/{landOfficerId}")
     public ResponseEntity<?> getBuyersOfOfficer(@PathVariable  UUID landOfficerId){

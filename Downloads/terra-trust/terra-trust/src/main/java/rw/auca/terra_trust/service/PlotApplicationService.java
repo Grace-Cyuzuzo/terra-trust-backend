@@ -8,6 +8,7 @@ import java.util.Optional;
 import java.util.UUID;
 import java.time.LocalDate;
 import rw.auca.terra_trust.domain.PlotApplicationStatus;
+import org.springframework.transaction.annotation.Transactional;
 
 @Service
 public class PlotApplicationService {
@@ -51,8 +52,17 @@ public class PlotApplicationService {
         }
 
         //Rule 3: Always force status to SUBMITTED
-        app.setStatus(PlotApplicationStatus.SUBMITTED.SUBMITTED);
+        app.setStatus(PlotApplicationStatus.SUBMITTED);
+
         repository.save(app);
         return "SUCCESS";
+    }
+    public List<Object[]> countApplicationsByStatus() {
+        return repository.countApplicationsByStatus();
+    }
+
+    @Transactional
+    public int cancelDay(UUID officerId, LocalDate date) {
+        return repository.cancelApplications(officerId, date);
     }
 }

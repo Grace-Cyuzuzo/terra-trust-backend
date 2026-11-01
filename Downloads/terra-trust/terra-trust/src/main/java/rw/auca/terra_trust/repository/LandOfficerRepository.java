@@ -10,7 +10,7 @@ import org .springframework.data.repository.query.Param;
 import org.springframework.data.jpa.repository.Query;
 
 public interface LandOfficerRepository extends JpaRepository<LandOfficer, UUID> {
-    @Query("SELECT DISTINCT o FROM LandOffice o JOIN o.sectors s WHERE LOWER(s.name) LIKE LOWER(CONCAT('%', :name,'%'))")
+    @Query("SELECT DISTINCT o FROM LandOfficer o JOIN o.sectors s WHERE LOWER(s.name) LIKE LOWER(CONCAT('%', :name,'%'))")
     List<LandOfficer> findBySectorName(@Param("name") String name);
     boolean existsByLandOffice(LandOffice landOffice);
 

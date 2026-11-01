@@ -4,9 +4,10 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.Optional;
 import java.util.UUID;
-
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+
+
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PatchMapping;
@@ -26,9 +27,11 @@ import rw.auca.terra_trust.service.PlotApplicationService;
 @RequestMapping("/api/plot-applications")
 public class PlotApplicationController {
     private final PlotApplicationService service;
+    private final rw.auca.terra_trust.service.PlotPaymentService paymentService;
 
-    public PlotApplicationController(PlotApplicationService service) {
+    public PlotApplicationController(PlotApplicationService service, rw.auca.terra_trust.service.PlotPaymentService paymentService) {
         this.service = service;
+        this.paymentService = paymentService;
     }
 
     @PostMapping("/save")
@@ -74,6 +77,9 @@ public class PlotApplicationController {
     public ResponseEntity<?> delete(@PathVariable UUID id) {
         Optional<PlotApplication> existing = service.findById(id);
         if (existing.isPresent()) {
+            if(paymentService.existsByPlotApplication(existing.get())){
+                return new ResponseEntity<>("That plot aaplication has plot payments, delete them first", HttpStatus.CONFLICT);
+            }
             service.delete(id);
             return new ResponseEntity<>("Plot application deleted successfully", HttpStatus.OK);
         }
@@ -114,4 +120,14 @@ public class PlotApplicationController {
 
         return new ResponseEntity<>("Plot application status updated successfully", HttpStatus.OK);
     }
-}
+    @GetMapping ("/stats/by-status")
+    public List<Object[]> statsByStatus() {
+        return service.countApplicationsByStatus();
+    }
+    @PatchMapping("/cancel-day")
+    public ResponseEntity<?> cancelDay(@RequestParam UUID landOfficerId,  @RequestParam String date){
+        int count = service.cancelDay(landOfficerId, LocalDate.parse(date));
+        return new ResponseEntity<>(count + " plot applications cancelled", HttpStatus.OK);
+    }
+}  
+
